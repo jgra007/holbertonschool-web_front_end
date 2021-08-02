@@ -1,9 +1,8 @@
 /* SCSS Stylesheet */
-$ColorText: #3d3d3d;
+$colorText: #3d3d3d;
 body {
-  color: #3d3d3d;
+  color: $colorText;
 }
-
 p {
-  color: #3d3d3d;
+  color: $colorText;
 }
