@@ -159,7 +159,7 @@ template {
 }
 
 /* Variables
-   ============================= */
+     ============================= */
 
 :root {
   --color-primary: #d73953;
@@ -238,7 +238,7 @@ template {
 }
 
 /* Base
-      ============================= */
+        ============================= */
 
 *,
 *:before,
@@ -304,7 +304,7 @@ a:active {
 }
 
 /* Helpers
-      ============================= */
+        ============================= */
 
 .visually-hidden:not(:focus):not(:active) {
   position: absolute !important;
@@ -318,7 +318,7 @@ a:active {
 /*** 2. LAYOUT ***/
 
 /* Layout
-      ============================= */
+        ============================= */
 
 .container {
   width: 960px;
@@ -327,8 +327,7 @@ a:active {
 }
 
 /* Grid
-      ============================= */
-
+        ============================= */
 .row {
   display: flex;
 }
@@ -352,12 +351,12 @@ ul.row {
 }
 
 /* Navbar
-      ============================= */
+        ============================= */
 
 .nav {
+  display: flex;
   margin: 0;
   padding: 0;
-  display: flex;
   list-style: none;
   text-align: center;
 }
@@ -401,22 +400,23 @@ ul.row {
 }
 
 /* Header
-      ============================= */
-** .header {
+        ============================= */
+
+.header {
   padding: var(--header-padding);
   position: relative;
   z-index: 3;
-  background: transparent !important;
+  background: transparent;
 }
 
 .header-container {
-  align-items: center;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 /* Footer
-      ============================= */
+        ============================= */
 
 .footer {
   --nav-item-font-weight: normal;
@@ -449,7 +449,7 @@ ul.row {
 /*** 3. SECTION ***/
 
 /* Section (all styles)
-      ============================= */
+        ============================= */
 
 .section {
   padding: var(--section-padding);
@@ -480,13 +480,16 @@ ul.row {
   padding: var(--section-body-padding);
 }
 
+.section-services {
+}
+
 .section-footer {
   padding: var(--section-footer-padding);
   text-align: var(--section-footer-align);
 }
 
 /* Section theming
-      ============================= */
+        ============================= */
 
 [data-section-theme="dark"] {
   --button-color: var(--color-white);
@@ -496,27 +499,16 @@ ul.row {
 }
 
 /* Section HERO
-      ============================= */
-
-.section-hero {
-  position: relative;
-  margin-top: -8.5rem;
-}
-
-.section-hero .section-body {
-  padding: 10rem 4rem;
-}
-
-.section-hero .section-category {
-  color: var(--color-white);
-  text-transform: uppercase;
-}
-
+        ============================= */
 .hero-homepage {
   background-position: 75% 0;
   background-repeat: no-repeat;
   background-size: 90rem auto;
   background-color: #010101;
+}
+.section-hero {
+  position: relative;
+  margin-top: -8.5rem;
 }
 
 .section-hero .section-title {
@@ -531,38 +523,43 @@ ul.row {
   min-height: 50vh;
 }
 
-/* Section Latest news
-      ============================= */
+.section-hero .section-category {
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.section-hero .section-body {
+  padding: 10rem 4rem;
+}
+
+/* Section Latest news ============================= */
 
 .section-latest-news .row {
   flex-direction: row-reverse;
 }
 
-/* Section SERVICES
-      ============================= */
+/* Section SERVICES ============================= */
 
 .section-services .row {
   flex-wrap: wrap;
 }
-**
-  /* Section ABOUT US
-      ============================= */
-  
-  .section-about-us [class*='col-'] {
+
+/* Section ABOUT US ============================= */
+.section-about-us [class^="col-"] {
   align-self: center;
 }
 
 /*** 4. CARD ***/
 
 /* Card (all styles)
-      ============================= */
+        ============================= */
 
 .card-category {
   color: var(--color-primary);
 }
 
 /* Card WORK
-      ============================= */
+        ============================= */
 
 .card-work .card-outer {
   position: relative;
@@ -627,7 +624,7 @@ ul.row {
 }
 
 /* Card SERVICES
-      ============================= */
+        ============================= */
 
 .card-services .card-title {
   margin: 0;
@@ -648,7 +645,7 @@ ul.row {
 }
 
 /* Card TESTIMONIAL
-      ============================= */
+        ============================= */
 
 .card-testimonial {
   text-align: center;
@@ -681,13 +678,11 @@ ul.row {
 }
 
 /*** ARTICLE PAGE ***/
-/* Section HERO (article)
-      ============================= */
+/* Section HERO (article) ============================= */
 .hero-article {
   background-size: 150rem 100rem;
   background-position: 50% 0;
 }
-
 .hero-article::before {
   content: "";
   background: rgba(0, 0, 0, 0.8);
@@ -698,13 +693,11 @@ ul.row {
   bottom: 0;
   z-index: 0;
 }
-
 .hero-article .section-inner {
   text-align: center;
   align-items: center;
   min-height: 40vh;
 }
-
 .hero-article .section-body {
   position: relative;
   padding: 7rem 0 0;
@@ -715,8 +708,7 @@ ul.row {
   padding: 5rem 0;
 }
 
-/* Post
-      ============================= */
+/* Post  ============================= */
 .post {
   display: flex;
 }
@@ -727,8 +719,8 @@ ul.row {
   order: -1;
   min-width: 20%;
 }
-/* Post Meta
-      ============================= */
+
+/* Post Meta  ============================= */
 .post-meta-list {
   flex-direction: column;
 }
@@ -738,42 +730,48 @@ ul.row {
   text-transform: uppercase;
   display: block;
 }
-.post-meta-list [class*="post-meta-"] {
+
+.post-meta-list [class^="post-meta-"] {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
   border-bottom: 0.2rem solid var(--color-light-grey);
 }
-.post-meta-list [class*="post-meta"]::last-child {
+
+.post-meta-list [class^="post-meta"]:last-child {
   border: none;
   margin-bottom: 3rem;
 }
-/* Tag list
-      ============================= */
+
+/* Tag list  ============================= */
 .tag-list {
   padding: 0;
   list-style: none;
 }
+
 .tag-list li {
   display: inline;
 }
+
 .tag-list li::after {
   content: ", ";
 }
-.tag-list li::last-child::after {
+
+.tag-list li:last-child::after {
   content: "";
 }
 
+/* Task Advance number 100  ============================= */
 .post img {
   width: 100%;
   height: auto;
 }
-.post-content p::first-child {
+.post-content p:first-child {
   font-size: var(--font-size-x-large);
 }
 .post-content .img-caption {
   margin: 1rem 0;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
   font-size: var(--font-size-small);
-  color: var(--color-grey, #a0a0a0);
+  color: var(--color-grey);
   text-align: center;
 }
