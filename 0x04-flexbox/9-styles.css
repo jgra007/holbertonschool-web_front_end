@@ -159,7 +159,7 @@ template {
 }
 
 /* Variables
-                     ============================= */
+   ============================= */
 
 :root {
   --color-primary: #d73953;
@@ -238,7 +238,7 @@ template {
 }
 
 /* Base
-                        ============================= */
+      ============================= */
 
 *,
 *:before,
@@ -304,7 +304,7 @@ a:active {
 }
 
 /* Helpers
-                        ============================= */
+      ============================= */
 
 .visually-hidden:not(:focus):not(:active) {
   position: absolute !important;
@@ -318,7 +318,7 @@ a:active {
 /*** 2. LAYOUT ***/
 
 /* Layout
-                        ============================= */
+      ============================= */
 
 .container {
   width: 960px;
@@ -327,15 +327,16 @@ a:active {
 }
 
 /* Grid
-                        ============================= */
-.row {
-  display: flex;
-}
+      ============================= */
 
 ul.row {
-  margin: 0;
+  margin: -1rem;
   padding: 0;
   list-style: none;
+}
+
+.row {
+  display: flex;
 }
 
 [class*="col-"] {
@@ -351,11 +352,7 @@ ul.row {
 }
 
 /* Navbar
-                        ============================= */
-
-.navbar-menu {
-  float: right;
-}
+      ============================= */
 
 .nav {
   display: flex;
@@ -404,7 +401,13 @@ ul.row {
 }
 
 /* Header
-                        ============================= */
+      ============================= */
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .header {
   padding: var(--header-padding);
@@ -413,14 +416,8 @@ ul.row {
   background: transparent;
 }
 
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 /* Footer
-                        ============================= */
+      ============================= */
 
 .footer {
   --nav-item-font-weight: normal;
@@ -453,7 +450,7 @@ ul.row {
 /*** 3. SECTION ***/
 
 /* Section (all styles)
-                        ============================= */
+      ============================= */
 
 .section {
   padding: var(--section-padding);
@@ -484,16 +481,13 @@ ul.row {
   padding: var(--section-body-padding);
 }
 
-.section-services {
-}
-
 .section-footer {
   padding: var(--section-footer-padding);
   text-align: var(--section-footer-align);
 }
 
 /* Section theming
-                        ============================= */
+      ============================= */
 
 [data-section-theme="dark"] {
   --button-color: var(--color-white);
@@ -503,7 +497,7 @@ ul.row {
 }
 
 /* Section HERO
-                        ============================= */
+      ============================= */
 
 .section-hero {
   background-position: 75% 0;
@@ -524,32 +518,35 @@ ul.row {
   min-height: 50vh;
 }
 
-/* Section Latest news ============================= */
-.section-Latest-news .row {
+/* Section Latest news
+      ============================= */
+.section-latest-news .row {
   flex-direction: row-reverse;
 }
 
-/* Section SERVICES ============================= */
+/* Section SERVICES
+      ============================= */
 .section-services .row {
   flex-wrap: wrap;
 }
 
-/* Section ABOUT US============================= */
-.section-about-us .col- {
+/* Section ABOUT US
+      ============================= */
+.section-about-us [class*="col-"] {
   align-self: center;
 }
 
 /*** 4. CARD ***/
 
 /* Card (all styles)
-                        ============================= */
+      ============================= */
 
 .card-category {
   color: var(--color-primary);
 }
 
 /* Card WORK
-                        ============================= */
+      ============================= */
 
 .card-work .card-outer {
   position: relative;
@@ -614,7 +611,7 @@ ul.row {
 }
 
 /* Card SERVICES
-                        ============================= */
+      ============================= */
 
 .card-services .card-title {
   margin: 0;
@@ -635,7 +632,7 @@ ul.row {
 }
 
 /* Card TESTIMONIAL
-                        ============================= */
+      ============================= */
 
 .card-testimonial {
   text-align: center;
