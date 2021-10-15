@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 1</title>
+    <title>Task 0</title>
 </head>
 <body>
     <!-- Create Cookies -->
@@ -24,12 +24,8 @@
         function setCookies() {
             let firstname = document.getElementById("firstname").value;
             let email = document.getElementById("email").value;
-            // Set expiration date
-            let date = new Date(Date.now() + (10*24*60*60*1000));
-            date = date.toUTCString();
-
-            document.cookie = `firstname=${firstname}; expires=${date}`;
-            document.cookie = `email=${email}; expires=${date}`
+            document.cookie = `firstname=${firstname}`;
+            document.cookie = `email=${email}`
         }
 
         function showCookies() {
