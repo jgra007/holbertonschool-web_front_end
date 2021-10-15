@@ -1,44 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task 2</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
 </head>
 <body>
-  <h1>Login to the website</h1>
-  <input id="firstname" placeholder="Firstname" type="text">
-  <input id="email" placeholder="Email" type="text">
-  <button onclick="setCookies()">Log me in</button>
-  <h2>Cookies</h2>
-  <button onclick="showCookies()">Show the cookies</button>
-  <script type="application/javascript">
+    <!-- Create Cookies -->
+    <h1>Login to the website</h1>
+    <form>
+        <input type="text" id="firstname" value="Firstname">
+        <input type="text" id="email" value="Email">
+        <button onclick="setCookies();">Log me in</button>
+    </form>
 
-  const cookies = document.cookie.split('; ');
+    <!-- Show Cookies -->
+    <h1>Cookies</h1>
+    <button onclick="showCookies();">Show me cookies</button>
+    <hr>
 
-  function setCookies() {
-    const d = new Date();
-    d.setTime(d.getTime() + (10 * 24 * 60 * 60 * 1000));
-    const expires = `expires=${d.toUTCString()}`;
-    document.cookie = `firstname=${document.getElementById('firstname').value};${expires};path=/`;
-    document.cookie = `email=${document.getElementById('email').value};${expires};path=/`;
-  }
-  function showCookies() {
-    const paragraph = document.createElement('p');
+    <script type="text/javascript">
+        function setCookies() {
+            let firstname = document.getElementById("firstname").value;
+            let email = document.getElementById("email").value;
+            // Set expiration date
+            let date = new Date(Date.now() + (10*24*60*60*1000));
+            date = date.toUTCString();
 
-    const firstname = cookies[0].split('=')[1];
-    const email = cookies[1].split('=')[1];
+            document.cookie = `firstname=${firstname}; expires=${date}`;
+            document.cookie = `email=${email}; expires=${date}`
+        }
 
-    document.body.appendChild(paragraph);
-    paragraph.innerHTML = `Email: ${email.toUpperCase()} - Firstname: ${firstname.toUpperCase()}`;
-  }
-  function getCookie(name) {
-    for (let index = 0; index < cookies.length; index++) {
-      const listCookies = cookies[index].split('=');
-      if (listCookies[0] === name) { return listCookies[1] }
-    }
-    return '';
-  }
-  </script>
+        function showCookies() {
+            const paragraph = `Email: ${getCookie("email")} - Firstname: ${getCookie("firstname")}`
+            let p = document.createElement("p").innerHTML = paragraph
+            document.body.append(p);
+        }
+
+        function getCookie(name) {
+            name = name + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+    </script>
 </body>
 </html>
