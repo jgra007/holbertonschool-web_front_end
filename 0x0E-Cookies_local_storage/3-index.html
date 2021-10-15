@@ -1,85 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task 3</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
 </head>
 <body>
-  <div id="form">
-    <h2>Login to the website</h2>
-    <input id="firstname" placeholder="Firstname" type="text">
-    <input id="email" placeholder="Email" type="text">
-    <button onclick="setCookies()">Log me in</button>
-  </div>
-  <script type="application/javascript">
+    <!-- Create Cookies -->
+    <div id="formContainer">
+        <h2>Login to the website</h2>
+        <!-- <form onsubmit="event.defaultPrevented();"> -->
+            <input type="text" id="firstname" value="Firstname">
+            <input type="text" id="email" value="Email">
+            <button onclick="setCookies(); showWelcomeMessageOrForm();">Log me in</button>
+        <!-- </form> -->
+    </div>
+    <!-- SHOW Dashboard on login Hide on Logout -->
+    <div class="dashboard">
+        <p style="display: none;" id="welcome">Welcome <span id="cookieName"></span><span id="logout" onclick="deleteCookiesAndShowForm();" style="font-weight: normal; font-style: italic; margin-left: 10px; cursor: pointer; background: yellow;">( Logout )</span></p>
+    </div>
 
-  const cookies = document.cookie.split('; ');
+    <script type="text/javascript">
+        function setCookies() {
+            let firstname = document.getElementById("firstname").value;
+            let email = document.getElementById("email").value;
+            // Set expiration date
+            let date = new Date(Date.now() + (10*24*60*60*1000));
+            date = date.toUTCString();
 
-  function setCookies() {
-    const d = new Date();
-    d.setTime(d.getTime() + (10 * 24 * 60 * 60 * 1000));
-    const expires = `expires=${d.toUTCString()}`;
-    document.cookie = `firstname=${document.getElementById('firstname').value};${expires};path=/`;
-    document.cookie = `email=${document.getElementById('email').value};${expires};path=/`;
+            document.cookie = `firstname=${firstname}; expires=${date}`;
+            document.cookie = `email=${email}; expires=${date}`
+        }
 
-    showWelcomeMessageOrForm();
-  }
-  function showCookies() {
-    const paragraph = document.createElement('p');
+        function showCookies() {
+            const paragraph = `Email: ${getCookie("email")} - Firstname: ${getCookie("firstname")}`
+            let p = document.createElement("p").innerHTML = paragraph
+            document.body.append(p);
+        }
 
-    const firstname = cookies[0].split('=')[1];
-    const email = cookies[1].split('=')[1];
+        function getCookie(name) {
+            name = name + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
 
-    document.body.appendChild(paragraph);
-    paragraph.innerHTML = `Email: ${email.toUpperCase()} - Firstname: ${firstname.toUpperCase()}`;
-  }
-  function getCookie(name) {
-    for (let index = 0; index < cookies.length; index++) {
-      const listCookies = cookies[index].split('=');
-      if (listCookies[0] === name) { return listCookies[1] }
-    }
-    return '';
-  }
-  function showForm() {
-    const msg = document.getElementById('msg');
-    msg.remove();
-    document.getElementById('form').style.display = 'block';
-  }
-  function hideForm() {
-    document.getElementById('form').style.display = 'none';
-  }
-  function deleteCookiesAndShowForm() {
-    document.cookie = "firstname=; expires=Thu, 17 Jan 1995 00:00:00 UTC;path=/;";
-    document.cookie = "email=; expires=Thu, 17 Jan 1995 00:00:00 UTC;path=/;";
-    showForm();
-  }
-  function showWelcomeMessageOrForm() {
-    const firstname = getCookie('firstname');
-    const email = getCookie('email');
+        // SHOW FORM
+        function showForm() {
+            document.getElementById("formContainer").style.display = "block";
+        }
 
-    if (!firstname || !email)
-      showForm();
-    else {
-      hideForm();
-      const msg = document.createElement('h1');
-      const logOut = document.createElement('a');
-      /* add text to tags */
-      msg.innerText = `Welcome ${firstname}`;
-      logOut.innerText = '(logout)';
-      /* Set the attributes */
-      msg.setAttribute('id', 'msg');
-      logOut.setAttribute('onclick', 'deleteCookiesAndShowForm()');
-      /* Styles log Out */
-      logOut.style.cursor = 'pointer';
-      logOut.style.fontWeight = 'normal';
-      logOut.style.fontStyle = 'italic';
-      logOut.style.marginLeft = '10px';
-      /* add tags to DOM */
-      msg.appendChild(logOut);
-      document.body.appendChild(msg);
-    }
-  }
-  </script>
+        // HIDE FORM
+        function hideForm() {
+            document.getElementById("formContainer").style.display = "none";
+        }
+
+        // LOGOUT USER
+        function deleteCookiesAndShowForm() {
+            // Set expiration date to delete cookie
+            let date = new Date(Date.now() - (10*24*60*60*1000));
+            date = date.toUTCString();
+
+            document.cookie = `firstname=""; expires=${date}`;
+            document.cookie = `email=""; expires=${date}`
+            document.getElementById("welcome").style.display = "none";
+            showForm();
+        }
+
+        // LOGIN USER
+        function showWelcomeMessageOrForm() {
+            if (getCookie("firstname") == " "){
+                showForm()
+            }
+            else{
+                hideForm()
+            }
+            document.getElementById("cookieName").innerHTML = getCookie("firstname");
+            document.getElementById("welcome").style.display = "block";
+        }
+    </script>
 </body>
 </html>
